@@ -4,6 +4,4 @@
 
 <p><%= @book.snippet %></p>
 
-<% @book.comments.each do |comment| %>
-  <p><%= comment.text %></p>
-<% end %>
+<a href="/books/<%=@book.id%>/edit">Edit This Book</a>

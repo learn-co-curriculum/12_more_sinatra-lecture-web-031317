@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   # Create
   post '/books' do
-    book = Book.create(title: params[:title], snippet: params[:snippet])
+    book = Book.create(params[:book])
     redirect "/books/#{book.id}"
   end
 
@@ -23,7 +23,16 @@ class BooksController < ApplicationController
     erb :'books/show.html'
   end
 
-  post '/books/:id/add_comment' do
+  # Edit
+  get '/books/:id/edit' do
+    @book = Book.find(params[:id])
+    erb :'books/edit.html'
+  end
 
+  # Update
+  patch '/books/:id' do
+    book = Book.find(params[:id])
+    book.update(params[:book])
+    redirect to("/books/#{book.id}")
   end
 end
